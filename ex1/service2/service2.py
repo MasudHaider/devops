@@ -4,8 +4,9 @@ import time
 app = Flask(__name__)
 
 time.sleep(2)
-log_file = 'D:/SWC/DevOps/hgmdha/ex1/service2/logs/service2.log'
-log_file = ''
+log_file = '/home/haider/devops/ex1/logs/service2.log'
+with open('/home/haider/devops/ex1/logs/service2.log','w') as f:
+    pass
 
 
 @app.route('/', methods=['POST'])
@@ -14,7 +15,7 @@ def receive_message():
     
     if incoming_message == "STOP":
        shutdown_server()
-       return
+       return ""
 
     local_address = request.host
     remote_address = f"{request.remote_addr}:{request.environ.get('REMOTE_PORT')}"
@@ -24,7 +25,7 @@ def receive_message():
 
 
     # write to service2.log
-    with open('D:/SWC/DevOps/hgmdha/ex1/service2/logs/service2.log', 'a') as log_file: 
+    with open('/home/haider/devops/ex1/logs/service2.log', 'a') as log_file: 
         log_file.write(full_log_message + "\n")
 
     if incoming_message == "STOP":
