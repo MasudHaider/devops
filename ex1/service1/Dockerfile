@@ -5,8 +5,9 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
+RUN mkdir -p /usr/src/app/logs
 
-COPY ..
+COPY . .
 
 EXPOSE 8001
 

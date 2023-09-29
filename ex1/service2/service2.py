@@ -4,8 +4,8 @@ import time
 app = Flask(__name__)
 
 time.sleep(2)
-log_file = '/home/haider/devops/ex1/logs/service2.log'
-with open('/home/haider/devops/ex1/logs/service2.log','w') as f:
+log_file = '/usr/src/app/logs/service2.log'
+with open('/usr/src/app/logs/service2.log','w') as f:
     pass
 
 
@@ -25,7 +25,7 @@ def receive_message():
 
 
     # write to service2.log
-    with open('/home/haider/devops/ex1/logs/service2.log', 'a') as log_file: 
+    with open('/usr/src/app/logs/service2.log', 'a') as log_file: 
         log_file.write(full_log_message + "\n")
 
     if incoming_message == "STOP":

@@ -3,7 +3,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 const app = express();
-const logFile = '/home/haider/devops/ex1/logs/service1.log';
+const logFile = '/usr/src/app/logs/service1.log';
 
 fs.writeFileSync(logFile, '');
 
@@ -15,7 +15,7 @@ const interval = setInterval(async () => {
 
         //fs.appendFileSync(logFile, logData + '\n');
 
-        const response = await axios.post('http://0.0.0.0:8000/', logData, { // change to container name
+        const response = await axios.post('http://service2_haider:8000/', logData, { // change to container name
             headers: {
                 'Content-Type': 'text/plain'
             }
@@ -27,7 +27,7 @@ const interval = setInterval(async () => {
         if(counter > 20){
             clearInterval(interval);
             fs.appendFileSync(logFile, 'STOP\n');
-            await axios.post('http://0.0.0.0:8000/', 'STOP', { //change to container name
+            await axios.post('http://service2_haider:8000/', 'STOP', { //change to container name
                 headers: {
                     'Content-Type': 'text/plain'
                 }

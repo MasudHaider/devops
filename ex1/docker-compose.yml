@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  service1_haider:
+    build: /home/haider/devops/ex1/service1/
+    container_name: service1_container_haider
+    volumes:
+      - ./logs:/usr/src/app/logs
+    depends_on:
+      - service2_haider
+
+  service2_haider:
+    build: /home/haider/devops/ex1/service2
+    container_name: service2_container_haider
+    volumes:
+      - ./logs:/usr/src/app/logs
