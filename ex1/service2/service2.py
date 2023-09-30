@@ -17,7 +17,7 @@ def receive_message():
        shutdown_server()
        return ""
 
-    local_address = request.host
+    local_address = request.environ.get('HTTP_HOST').split(':')[0]
     remote_address = f"{request.remote_addr}:{request.environ.get('REMOTE_PORT')}"
 
     # log entry for service2.log
