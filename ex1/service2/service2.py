@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import socket
 import time
 
 app = Flask(__name__)
@@ -17,7 +18,7 @@ def receive_message():
        shutdown_server()
        return ""
 
-    local_address = request.environ.get('HTTP_HOST').split(':')[0]
+    local_address = socket.gethostbyname(socket.gethostname()) + ":8000"
     remote_address = f"{request.remote_addr}:{request.environ.get('REMOTE_PORT')}"
 
     # log entry for service2.log
